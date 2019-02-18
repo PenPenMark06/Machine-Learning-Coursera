@@ -26,13 +26,15 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+% Get the number of rows of X
+num_rows = size(X, 1)
 
-
-
-
-
-
-
+% Get mean, and SD for each column, then normalize X column by column as follows
+for j = 1:size(X, 2)
+    mu(j) = sum(X(:, j))/num_rows;
+    sigma(j) = std(X(:, j));
+    X_norm(:, j) = (X(:, j) - mu(j))/sigma(j);
+end;
 
 % ============================================================
 

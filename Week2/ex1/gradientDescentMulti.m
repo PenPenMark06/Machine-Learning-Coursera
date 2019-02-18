@@ -17,12 +17,22 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    prediction = X * theta; % This is the h(x) for all of them
+    error = (prediction - y); % Get the h(x) - y part
+    
+    % For each colum (feature), I'll times x's to error
+    % And get the sum. Store it in temp
+    for i = 1:size(X, 2)
+        temp = (1/m) * sum(error.* X(:, i));
+        if i == 1
+            sigma = [temp]; % If temp was the first item, create matric sigma
+        else    
+            sigma = [sigma; temp]; % Else, append them to next row
+        end    
+    end
 
-
-
-
-
-
+    % Update theta as defined in the lecture videos
+    theta = theta - (alpha * sigma);
 
 
 
